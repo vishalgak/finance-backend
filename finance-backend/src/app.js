@@ -114,12 +114,11 @@ app.use(`/api/${API_VERSION}/dashboard`, dashboardRoutes);
 
 // ─── 404 Handler ─────────────────────────────────────────────────
 // Handle requests to undefined routes
-app.all('*', (req, res, next) => {
+app.use((req, res, next) => {
   next(
     new ApiError(
       404,
-      `Cannot find ${req.method} ${req.originalUrl} on this server. ` +
-      `Please check the API documentation for available endpoints.`
+      `Cannot find ${req.method} ${req.originalUrl} on this server.`
     )
   );
 });
